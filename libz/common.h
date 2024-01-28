@@ -8,6 +8,7 @@
 char* base64_encode(const unsigned char *data, size_t input_length) {
     // Base64 encoding table
     const char base64_table[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    print_debug_msg("Creating base64 string table...");
 
     // Calculate the length of the encoded data
     size_t output_length = 4 * ((input_length + 2) / 3);
@@ -16,6 +17,7 @@ char* base64_encode(const unsigned char *data, size_t input_length) {
     char *encoded_data = (char *)malloc(output_length + 1);
     if (encoded_data == NULL) {
         fprintf(stderr, "Memory allocation error\n");
+        print_error_msg("Memmory allocation error");
         return NULL;
     }
 

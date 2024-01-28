@@ -22,11 +22,12 @@ void request(const char*host,int port) {
     // Set up the server address
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_port = htons(port);
-    serverAddr.sin_addr.s_addr = inet_addr(host); // Google's IP address
+    serverAddr.sin_addr.s_addr = inet_addr(host); 
 
     // Connect to the server
     if (connect(sockfd, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) < 0) {
         print_error_msg("Error in connect");
+        print_error_msg("Could not connect to the server");
         exit(EXIT_FAILURE);
     }
 
@@ -36,16 +37,14 @@ void request(const char*host,int port) {
     snprintf(data, sizeof(data), "GET / HTTP/1.1\r\nHost: %s\r\n\r\n", host);
 
 
-    // Print the request
     printf("Request: %s\n", data);
 
-    // Send the data
     if (send(sockfd, data, dataLen, 0) != dataLen) {
         perror("Error in send");
         exit(EXIT_FAILURE);
     }
 
-    // Close the socket
     close(sockfd);
+    print_debug_msg("Closing the connection");
 
 }
