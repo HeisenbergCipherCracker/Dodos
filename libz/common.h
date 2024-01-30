@@ -46,3 +46,7 @@ char* base64_encode(const unsigned char *data, size_t input_length) {
 
     return encoded_data;
 }
+
+size_t write_callback(void *data, size_t size, size_t nmemb, void *userdata) {
+    return size * nmemb;
+}
