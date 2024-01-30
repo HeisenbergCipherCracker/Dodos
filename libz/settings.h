@@ -5,6 +5,8 @@
 #define VERSION "1.0.0"
 #define AUTHOR "Seyed Ali Mirmohammad"
 #define RELEASE "2024"
+#ifndef SETTINGS_H
+#define SETTINGS_H
 
 //print legal warning
 
@@ -128,3 +130,5 @@ const char* OPTIONS[1000] = {
 };
 
 //eof
+
+#endif

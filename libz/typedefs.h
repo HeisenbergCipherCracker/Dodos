@@ -11,7 +11,6 @@ typedef struct{
     char* text;
     float* float_num;
     double* double_num;
-    bool *bool_val;
 }List;
 
 

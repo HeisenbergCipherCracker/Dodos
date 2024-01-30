@@ -1,9 +1,8 @@
 #include <stdio.h>
 #ifndef WEBSOCKET_H 
 #define WEBSOCKET_H
-#endif
-#include "libz/request.h"
-#include "libz/common.h"
+#include "request.h"
+#include "common.h"
 #include <curl/curl.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -114,3 +113,4 @@ void send_socket(const char* hostname, const char* port) {
     close(clientSocket);
 }
 
+#endif

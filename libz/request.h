@@ -26,8 +26,8 @@ void request(const char*host,int port) {
 
     // Connect to the server
     if (connect(sockfd, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) < 0) {
-        print_error_msg("Error in connect");
-        print_error_msg("Could not connect to the server");
+        printf("Error in connect");
+        printf("Could not connect to the server");
         exit(EXIT_FAILURE);
     }
 
@@ -45,6 +45,6 @@ void request(const char*host,int port) {
     }
 
     close(sockfd);
-    print_debug_msg("Closing the connection");
+    printf("Closing the connection");
 
 }
