@@ -10,17 +10,7 @@
 #ifndef WEBSOCKET_H
 #define WEBSOCKET_H
 
-size_t write_callback(void *contents, size_t size, size_t nmemb, void *userp) {
-    size_t realsize = size * nmemb;
-    char *ptr = (char *)contents;
 
-    // Assuming you want to print the response data to the console
-    printf("%.*s", (int)realsize, ptr);
-
-    // You might also want to handle the data in some other way (e.g., store it in a buffer)
-
-    return realsize;
-}
 
 
 // Function to check if a host is up using a HEAD request with libcurl

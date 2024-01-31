@@ -1,6 +1,10 @@
 #include <stdio.h>
 
 
+#ifndef TYPEDEFS_H
+#define TYPEDEFS_H
+
+
 typedef struct{
     int* sin_port;
     int* address;
@@ -14,3 +18,4 @@ typedef struct{
 }List;
 
 
+#endif
