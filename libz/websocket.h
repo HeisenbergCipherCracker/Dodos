@@ -25,7 +25,7 @@ size_t write_callback(void *contents, size_t size, size_t nmemb, void *userp) {
 
 // Function to check if a host is up using a HEAD request with libcurl
 int static inline check_host(const char* url){
-    volatile status_code;
+    volatile int status_code;
     CURL *curl = curl_easy_init();
     if (curl){
         curl_easy_setopt(curl, CURLOPT_URL, url);
