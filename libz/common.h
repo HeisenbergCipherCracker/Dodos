@@ -17,7 +17,7 @@ char* base64_encode(const unsigned char *data, size_t input_length) {
     char *encoded_data = (char *)malloc(output_length + 1);
     if (encoded_data == NULL) {
         fprintf(stderr, "Memory allocation error\n");
-        print_error_msg("Memmory allocation error");
+        printf("Memmory allocation error");
         return NULL;
     }
 
@@ -45,8 +45,13 @@ char* base64_encode(const unsigned char *data, size_t input_length) {
     encoded_data[output_length] = '\0';
 
     return encoded_data;
-}
+}  
 
 size_t write_callback(void *data, size_t size, size_t nmemb, void *userdata) {
     return size * nmemb;
+}
+
+
+int get_count(int count){
+    return count;
 }
