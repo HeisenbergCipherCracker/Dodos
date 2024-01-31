@@ -33,6 +33,12 @@ int cmdline(int argc, char *argv[]) {
                 i++; // Skip the next argument (value)
             }
         }
+        else if (strcmp(argv[i],"--timeout") == 0){
+            if (i + 1 < argc && argv[i + 1][0] != '-') {
+                timeout = argv[i + 1];
+                i++; // Skip the next argument (value)
+            }
+        }
     }
 
     // Now you can use host and port globally in your program

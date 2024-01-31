@@ -1,10 +1,4 @@
 #include <stdio.h>
-#ifndef WEBSOCKET_H 
-#define WEBSOCKET_H
-#include "request.h"
-#include "common.h"
-#include <curl/curl.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -12,15 +6,34 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
+#include <curl/curl.h>
+#ifndef WEBSOCKET_H
+#define WEBSOCKET_H
 
+size_t write_callback(void *contents, size_t size, size_t nmemb, void *userp) {
+    size_t realsize = size * nmemb;
+    char *ptr = (char *)contents;
+
+    // Assuming you want to print the response data to the console
+    printf("%.*s", (int)realsize, ptr);
+
+    // You might also want to handle the data in some other way (e.g., store it in a buffer)
+
+    return realsize;
+}
+
+
+// Function to check if a host is up using a HEAD request with libcurl
 int static inline check_host(const char* url){
+    volatile status_code;
     CURL *curl = curl_easy_init();
     if (curl){
         curl_easy_setopt(curl, CURLOPT_URL, url);
-                // Set the HTTP method to HEAD
+        // Set the HTTP method to HEAD
         curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
 
         // Set a callback function to handle the response data (optional)
+        // (Note: The write_callback function should be defined somewhere in your code)
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
 
         // Perform the HTTP request
@@ -33,16 +46,14 @@ int static inline check_host(const char* url){
             printf("Host is up!\n");
             return 0;
         }
-    }
-
-    else {
+    } else {
         fprintf(stderr, "Could not initialize curl.\n");
         return -1;
     }
     return 0;
 }
 
-
+// Function to send an HTTP GET request to a server using sockets
 void send_socket(const char* hostname, const char* port) {
     const char *request = "GET / HTTP/1.1\r\nHost: %s\r\nConnection: close\r\n\r\n";
 
